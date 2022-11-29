@@ -22,4 +22,9 @@ public class FireBulletOnActivate : MonoBehaviour
 
         Destroy(firedBullet, 5);
     }
+
+    public void SetBulletSpeed(float newSpeed)
+    {
+        bulletSpeed = newSpeed;
+    }
 }
