@@ -15,14 +15,14 @@ public class ButtonHandler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Button") && !_deadTimeActive)
-            onPressed.Invoke();
+            onPressed?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Button") && !_deadTimeActive)
         {
-            onReleased.Invoke();
+            onReleased?.Invoke();
 
             StartCoroutine(WaitForDeadTime());
         }
