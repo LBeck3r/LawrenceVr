@@ -1,53 +1,39 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ButtonHandler : MonoBehaviour
 {
-    [SerializeField]
-    private float threshold = .1f;
+    //Time that the button is set inactive for after release
+    public float deadTime = 0.5f;
 
-    [SerializeField]
-    private float deadZone = 0.025f;
-
-    private bool _isPressed;
-    private Vector3 _startPos;
-    private ConfigurableJoint _joint;
+    //Bool used to lock button trigger event during dead time
+    private bool _deadTimeActive = false;
 
     public UnityEvent onPressed, onReleased;
 
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        _startPos = transform.localPosition;
-        _joint = GetComponent<ConfigurableJoint>();
+        if (other.CompareTag("Button") && !_deadTimeActive)
+            onPressed.Invoke();
     }
 
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        if (!_isPressed && GetValue() + threshold >= 1)
-            Pressed();
-        if (_isPressed && GetValue() - threshold <= 0)
-            Released();
+        if (other.CompareTag("Button") && !_deadTimeActive)
+        {
+            onReleased.Invoke();
+
+            StartCoroutine(WaitForDeadTime());
+        }
     }
 
-    private float GetValue()
+    IEnumerator WaitForDeadTime()
     {
-        var value = Vector3.Distance(_startPos, transform.localPosition) / _joint.linearLimit.limit;
+        _deadTimeActive = true;
 
-        if (Mathf.Abs(value) < deadZone)
-            value = 0;
+        yield return new WaitForSeconds(deadTime);
 
-        return Mathf.Clamp(value, -1f, 1f);
-    }
-
-    private void Pressed()
-    {
-        _isPressed = true;
-        onPressed.Invoke();
-    }
-
-    private void Released()
-    {
-        _isPressed = false;
-        onReleased.Invoke();
+        _deadTimeActive = false;
     }
 }
