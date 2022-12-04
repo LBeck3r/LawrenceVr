@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class CanSpawner : MonoBehaviour
 {
-    public GameObject can;
+    public GameObject Can;
 
     public void SpawnCan()
     {
-        GameObject newCan = Instantiate(can);
+        GameObject newCan = Instantiate(Can);
 
         newCan.transform.position = transform.localPosition;
     }

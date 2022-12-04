@@ -3,9 +3,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class FireBulletOnActivate : MonoBehaviour
 {
-    public GameObject bullet;
-    public Transform spawnPoint;
-    public float bulletSpeed = 25;
+    public GameObject Bullet;
+    public Transform SpawnPoint;
+    public float BulletSpeed = 25;
 
     void Start()
     {
@@ -15,16 +15,16 @@ public class FireBulletOnActivate : MonoBehaviour
 
     public void FireBullet(ActivateEventArgs args)
     {
-        GameObject firedBullet = Instantiate(bullet);
+        GameObject firedBullet = Instantiate(Bullet);
 
-        firedBullet.transform.position = spawnPoint.position;
-        firedBullet.GetComponent<Rigidbody>().velocity = spawnPoint.forward * bulletSpeed;
+        firedBullet.transform.position = SpawnPoint.position;
+        firedBullet.GetComponent<Rigidbody>().velocity = SpawnPoint.forward * BulletSpeed;
 
         Destroy(firedBullet, 5);
     }
 
     public void SetBulletSpeed(float newSpeed)
     {
-        bulletSpeed = newSpeed;
+        BulletSpeed = newSpeed;
     }
 }

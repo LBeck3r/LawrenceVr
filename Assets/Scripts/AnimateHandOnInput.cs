@@ -3,17 +3,17 @@ using UnityEngine.InputSystem;
 
 public class AnimateHandOnInput : MonoBehaviour
 {
-    public InputActionProperty pinchAnimationAction;
-    public InputActionProperty gripAnimationAction;
+    public InputActionProperty PinchAnimationAction;
+    public InputActionProperty GripAnimationAction;
 
-    public Animator handAnimator;
+    public Animator HandAnimator;
 
     void Update()
     {
-        var triggerValue = pinchAnimationAction.action.ReadValue<float>();
-        var gripValue = gripAnimationAction.action.ReadValue<float>();
+        var triggerValue = PinchAnimationAction.action.ReadValue<float>();
+        var gripValue = GripAnimationAction.action.ReadValue<float>();
 
-        handAnimator.SetFloat("Trigger", triggerValue);
-        handAnimator.SetFloat("Grip", gripValue);
+        HandAnimator.SetFloat("Trigger", triggerValue);
+        HandAnimator.SetFloat("Grip", gripValue);
     }
 }
