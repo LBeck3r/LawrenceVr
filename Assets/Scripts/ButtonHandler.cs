@@ -4,23 +4,20 @@ using UnityEngine.Events;
 
 public class ButtonHandler : MonoBehaviour
 {
-    //Time that the button is set inactive for after release
-    public float DeadTime = 0.5f;
-
-    //Bool used to lock button trigger event during dead time
-    private bool _deadTimeActive = false;
-
+    //Duration the button is inactive for after release
+    [SerializeField] private float _deadTime = 0.5f;
+    private bool _lockButton = false;
     public UnityEvent OnPressed, OnReleased;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Button") && !_deadTimeActive)
+        if (other.CompareTag("Button") && !_lockButton)
             OnPressed?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Button") && !_deadTimeActive)
+        if (other.CompareTag("Button") && !_lockButton)
         {
             OnReleased?.Invoke();
 
@@ -30,10 +27,10 @@ public class ButtonHandler : MonoBehaviour
 
     IEnumerator WaitForDeadTime()
     {
-        _deadTimeActive = true;
+        _lockButton = true;
 
-        yield return new WaitForSeconds(DeadTime);
+        yield return new WaitForSeconds(_deadTime);
 
-        _deadTimeActive = false;
+        _lockButton = false;
     }
 }
