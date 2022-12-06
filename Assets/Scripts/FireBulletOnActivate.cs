@@ -7,7 +7,7 @@ public class FireBulletOnActivate : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _bulletSpeed = 25;
 
-    void Start()
+    private void Start()
     {
         XRGrabInteractable grabbable = GetComponent<XRGrabInteractable>();
         grabbable.activated.AddListener(FireBullet);
