@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2985258855203431950}
   - component: {fileID: 2985258855203431951}
   m_Layer: 7
-  m_Name: SM_Prop_Can_01
+  m_Name: InteractableCan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
