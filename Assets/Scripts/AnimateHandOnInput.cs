@@ -5,7 +5,6 @@ public class AnimateHandOnInput : MonoBehaviour
 {
     [SerializeField] private InputActionProperty _pinchAnimationAction;
     [SerializeField] private InputActionProperty _gripAnimationAction;
-
     [SerializeField] private Animator _handAnimator;
 
     void Update()

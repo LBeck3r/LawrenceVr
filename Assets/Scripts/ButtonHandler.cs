@@ -6,9 +6,7 @@ public class ButtonHandler : MonoBehaviour
 {
     //Duration the button is inactive for after release
     [SerializeField] private float _deadTime = 0.5f;
-
     private bool _lockButton = false;
-
     public UnityEvent OnPressed, OnReleased;
 
     private void OnTriggerEnter(Collider other)
