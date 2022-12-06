@@ -21,7 +21,7 @@ public class CanSpawner : MonoBehaviour
 
     public void SpawnCan()
     {
-        GameObject newCan = _pool.Get();
+        var newCan = _pool.Get();
 
         newCan.transform.position = transform.localPosition;
     }
